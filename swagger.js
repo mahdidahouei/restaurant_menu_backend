@@ -12,16 +12,6 @@ const options = {
       version: '1.0.0',
       description: 'API documentation for the restaurant menu website. Developed by Mahdi Dahouei',
     },
-    // servers: [
-    //   {
-    //     url: 'https://notes.mahdidahouei.com',
-    //     description: 'Deployed Server',
-    //   },
-    //   {
-    //     url: `http://localhost:${PORT}/`,
-    //     description: 'Local host',
-    //   },
-    // ],
     components: {
       securitySchemes: {
         Bearer: {
