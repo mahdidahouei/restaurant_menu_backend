@@ -16,6 +16,12 @@ connectDB();
 // Middleware
 app.use(express.json());
 
+// Middleware to set CORS headers for images
+app.use('/api/menuItems/:id/image', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 // Swagger setup
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 // Redirect root to /api-docs
@@ -33,10 +39,3 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // TODO: remove this
 
-const bcrypt = require("bcryptjs");
-
-const password = "1403RamzoRaz1403";
-const salt = bcrypt.genSaltSync(10);
-const hashedPassword = bcrypt.hashSync(password, salt);
-
-console.log(hashedPassword);
