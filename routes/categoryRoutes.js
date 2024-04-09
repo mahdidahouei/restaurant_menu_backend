@@ -137,6 +137,33 @@
  *       required:
  *         - name
  */
+/**
+ * @swagger
+ * /api/categories/{categoryId}/menuItems:
+ *   get:
+ *     summary: Get menu items by category ID
+ *     tags: [Categories]
+ *     parameters:
+ *       - in: path
+ *         name: categoryId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID of the category
+ *     responses:
+ *       200:
+ *         description: List of menu items belonging to the specified category
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/MenuItem'
+ *       404:
+ *         description: Category not found
+ *       500:
+ *         description: Internal server error
+ */
 
 /**
  * @swagger
