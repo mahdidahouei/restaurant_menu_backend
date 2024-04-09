@@ -5,8 +5,10 @@ const authRoutes = require("./routes/authRoutes");
 const menuItemRoutes = require("./routes/menuItemRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const { specs, swaggerUi } = require("./swagger");
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 
 // Connect to MongoDB
 connectDB();

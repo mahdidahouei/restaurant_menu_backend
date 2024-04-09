@@ -49,13 +49,17 @@ exports.updateMenuItem = async (req, res) => {
     if (!menuItem)
       return res.status(404).json({ message: "Menu item not found" });
 
-    const menuItemCategory = Category.findOne({ name: category });
+    // Find the category by name to get its ObjectId
+    const categoryObject = await Category.findOne({ name: category });
+    if (!categoryObject) {
+      throw new Error(`Category "${category}" not found`);
+    }
 
     menuItem.title = title;
     menuItem.imageUrl = imageUrl;
     menuItem.ingredients = ingredients;
     menuItem.price = price;
-    menuItem.category = menuItemCategory;
+    menuItem.category = categoryObject._id;
 
     await menuItem.save();
     res.json({ message: "Menu item updated successfully", menuItem });
@@ -144,5 +148,39 @@ exports.uploadImage = async (req, res) => {
   } catch (error) {
     console.error("Error uploading image:", error.message);
     return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+exports.getMenuItemImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the menuItem by ID
+    const menuItem = await MenuItem.findById(id);
+
+    if (!menuItem) {
+      return res.status(404).json({ message: 'Menu item not found' });
+    }
+
+    // Get the imageUrl from the menuItem
+    const { imageUrl } = menuItem;
+
+    if (!imageUrl) {
+      return res.status(404).json({ message: 'Image not found for this menu item' });
+    }
+
+    // Fetch the image binary data from the imageUrl
+    const imageResponse = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+
+    // Set the appropriate Content-Type header based on the image format
+    const contentType = imageResponse.headers['content-type'];
+    res.setHeader('Content-Type', contentType);
+
+    // Return the binary image data as the response
+    res.send(imageResponse.data);
+  } catch (error) {
+    console.error('Error fetching menu item image:', error.message);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };

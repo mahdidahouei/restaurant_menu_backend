@@ -32,6 +32,26 @@
 /**
  * @swagger
  * /api/menuItems:
+ *   get:
+ *     summary: Get all menu items
+ *     tags: [Menu Items]
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/MenuItem'
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+/**
+ * @swagger
+ * /api/menuItems:
  *   post:
  *     summary: Create a new menu item
  *     tags: [Menu Items]
@@ -98,7 +118,7 @@
 
 /**
  * @swagger
- * /api/menuItems:
+ * /api/menuItems/{id}:
  *   put:
  *     summary: Update a menu item
  *     tags: [Menu Items]
@@ -153,22 +173,6 @@
  *         description: Not found
  *       500:
  *         description: Internal server error
- *   get:
- *     summary: Get all menu items
- *     tags: [Menu Items]
- *     responses:
- *       200:
- *         description: OK
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/MenuItem'
- *       401:
- *         description: Unauthorized
- *       500:
- *         description: Internal server error
  */
 
 const express = require('express');
@@ -182,5 +186,6 @@ router.put('/:id', authMiddleware, menuItemController.updateMenuItem);
 router.delete('/:id', authMiddleware, menuItemController.deleteMenuItem);
 router.post('/upload-image', authMiddleware, upload.single('image'), menuItemController.uploadImage);
 router.get('/', menuItemController.getMenuItems);
+router.get('/:id/image', menuItemController.getMenuItemImage);
 
 module.exports = router;
