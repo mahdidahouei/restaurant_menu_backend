@@ -100,7 +100,7 @@ exports.getMenuItems = async (req, res) => {
         menuItems: categoryMenuItems.map(item => ({
           _id: item._id,
           title: item.title,
-          imageUrl: (item.imageUrl && item.imageUrl != "") ? `${req.protocol}://${req.get('host')}/api/menuItems/${item._id}/image` : null,
+          imageUrl: (item.imageUrl && item.imageUrl != "") ? `https://${req.get('host')}/api/menuItems/${item._id}/image` : null,
           ingredients: item.ingredients,
           price: item.price
         }))
