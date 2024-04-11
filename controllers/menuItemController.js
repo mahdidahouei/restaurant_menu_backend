@@ -170,9 +170,6 @@ exports.getMenuItemImage = async (req, res) => {
       return res.status(404).json({ message: 'Image not found for this menu item' });
     }
 
-    // Ensure the imageUrl is loaded over HTTPS
-    imageUrl = imageUrl.replace(/^http:/, 'https:');
-
     // Fetch the image binary data from the imageUrl
     const imageResponse = await axios.get(imageUrl, { responseType: 'arraybuffer' });
 
