@@ -18,6 +18,10 @@ const menuItemSchema = new Schema({
     ref: 'Category', // Reference to the Category model
     required: true,
   },
+  priority: {
+    type: Number,
+    default: 0, // Default priority value
+  },
 });
 
 module.exports = mongoose.model('MenuItem', menuItemSchema);

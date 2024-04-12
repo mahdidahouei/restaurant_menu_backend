@@ -77,44 +77,6 @@
  *       500:
  *         description: Internal server error
  */
-/**
- * @swagger
- * /api/menuItems/upload-image:
- *   post:
- *     summary: Upload an image for a menu item
- *     tags: [Menu Items]
- *     security:
- *       - Bearer: []
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
- *             type: object
- *             properties:
- *               image:
- *                 type: string
- *                 format: binary
- *                 description: The image file to upload. File size must not exceed 5MB.
- *     responses:
- *       200:
- *         description: Image uploaded successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   description: A message indicating the success of the image upload.
- *                 imageUrl:
- *                   type: string
- *                   description: The URL of the uploaded image.
- *       400:
- *         description: Bad request. Image file is required.
- *       500:
- *         description: Internal server error
- */
 
 /**
  * @swagger
@@ -234,13 +196,11 @@ const express = require('express');
 const router = express.Router();
 const menuItemController = require('../controllers/menuItemController');
 const authMiddleware = require('../middleware/authMiddleware');
-const upload = require('../middleware/multerMiddleware');
 
 router.post('/', authMiddleware, menuItemController.createMenuItem);
 router.put('/', authMiddleware, menuItemController.updateMultipleMenuItems);
 router.put('/:id', authMiddleware, menuItemController.updateMenuItem);
 router.delete('/:id', authMiddleware, menuItemController.deleteMenuItem);
-router.post('/upload-image', authMiddleware, upload.single('image'), menuItemController.uploadImage);
 router.get('/', menuItemController.getMenuItems);
 router.get('/:id/image', menuItemController.getMenuItemImage);
 
