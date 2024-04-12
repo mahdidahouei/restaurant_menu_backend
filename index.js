@@ -33,9 +33,8 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/menuItems", menuItemRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use('/api/generalInfo', generalInfoRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-// TODO: remove this
 

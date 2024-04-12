@@ -184,3 +184,23 @@ exports.getMenuItemImage = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+exports.updateMultipleMenuItems = async (req, res) => {
+  try {
+    const { menuItems } = req.body;
+
+    // Update each menu item
+    const promises = menuItems.map(async (item) => {
+      const { _id, ...updateData } = item;
+      await MenuItem.findByIdAndUpdate(_id, updateData);
+    });
+
+    // Wait for all updates to complete
+    await Promise.all(promises);
+
+    res.status(200).json({ message: 'Menu items updated successfully' });
+  } catch (error) {
+    console.error('Error updating menu items:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};

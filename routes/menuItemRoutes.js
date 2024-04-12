@@ -174,6 +174,61 @@
  *       500:
  *         description: Internal server error
  */
+/**
+ * @swagger
+ * paths:
+ *   /api/menuItems:
+ *     put:
+ *       summary: Update multiple menu items
+ *       description: Update multiple menu items in the database.
+ *       tags:
+ *         - Menu Items
+ *       security:
+ *         - bearerAuth: []
+ *       requestBody:
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/MenuItemUpdate'
+ *       responses:
+ *         '200':
+ *           description: Menu items updated successfully
+ *         '400':
+ *           description: Bad request
+ *         '401':
+ *           description: Unauthorized
+ *         '500':
+ *           description: Internal server error
+ *
+ * components:
+ *   schemas:
+ *     MenuItemUpdate:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *           description: The ID of the menu item to update
+ *         title:
+ *           type: string
+ *           description: The updated title of the menu item
+ *         imageUrl:
+ *           type: string
+ *           description: The updated image URL of the menu item
+ *         ingredients:
+ *           type: array
+ *           items:
+ *             type: string
+ *           description: The updated list of ingredients of the menu item
+ *         price:
+ *           type: number
+ *           description: The updated price of the menu item
+ *         category:
+ *           type: string
+ *           description: The updated category of the menu item
+ */
 
 const express = require('express');
 const router = express.Router();
@@ -182,6 +237,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 const upload = require('../middleware/multerMiddleware');
 
 router.post('/', authMiddleware, menuItemController.createMenuItem);
+router.put('/', authMiddleware, menuItemController.updateMultipleMenuItems);
 router.put('/:id', authMiddleware, menuItemController.updateMenuItem);
 router.delete('/:id', authMiddleware, menuItemController.deleteMenuItem);
 router.post('/upload-image', authMiddleware, upload.single('image'), menuItemController.uploadImage);
