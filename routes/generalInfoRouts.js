@@ -6,6 +6,7 @@ const {
   createGeneralInfo,
   getGeneralInfo,
   updateGeneralInfo,
+  getBackgroundImage,
 } = require("../controllers/generalInfoController");
 const authMiddleware = require("../middleware/authMiddleware");
 
@@ -131,5 +132,7 @@ router.get("/", getGeneralInfo);
  *         description: Internal server error
  */
 router.put("/", authMiddleware, updateGeneralInfo);
+
+router.get("/background-image", getBackgroundImage);
 
 module.exports = router;

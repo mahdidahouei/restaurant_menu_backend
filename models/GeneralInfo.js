@@ -13,9 +13,6 @@ const generalInfoSchema = new mongoose.Schema({
   },
   backgroundImage: {
     type: String,
-    required: function() {
-      return this.appBarType === 'sliver'; // Only required if appBarType is 'sliver'
-    },
   },
   backgroundColor: {
     type: String,

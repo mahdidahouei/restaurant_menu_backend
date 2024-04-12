@@ -25,6 +25,12 @@ app.use('/api/menuItems/:id/image', (req, res, next) => {
   next();
 });
 
+// Middleware to set CORS headers for images
+app.use('/api/general-info/background-image', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 // Swagger setup
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 // Redirect root to /api-docs
@@ -36,7 +42,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/menu-items", menuItemRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use('/api/genera-info', generalInfoRoutes);
+app.use('/api/general-info', generalInfoRoutes);
 app.use('/api/upload-image', uploadImageRoutes);
 
 const PORT = process.env.PORT || 5000;

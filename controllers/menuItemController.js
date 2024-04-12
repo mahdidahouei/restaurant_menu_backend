@@ -150,7 +150,7 @@ exports.getMenuItemImage = async (req, res) => {
 
 exports.updateMultipleMenuItems = async (req, res) => {
   try {
-    const { menuItems } = req.body;
+    const menuItems = req.body;
 
     // Update each menu item
     const promises = menuItems.map(async (item) => {

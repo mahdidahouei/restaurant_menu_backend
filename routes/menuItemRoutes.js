@@ -146,7 +146,7 @@
  *       tags:
  *         - Menu Items
  *       security:
- *         - bearerAuth: []
+ *         - Bearer: []
  *       requestBody:
  *         required: true
  *         content:
