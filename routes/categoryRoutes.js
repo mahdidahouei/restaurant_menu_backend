@@ -139,7 +139,7 @@
  */
 /**
  * @swagger
- * /api/categories/{categoryId}/menuItems:
+ * /api/categories/{categoryId}/menu-items:
  *   get:
  *     summary: Get menu items by category ID
  *     tags: [Categories]
@@ -200,6 +200,6 @@ router.put('/', authMiddleware, categoryController.updateMultipleCategories);
 router.put('/:id', authMiddleware, categoryController.updateCategory);
 router.delete('/:id', authMiddleware, categoryController.deleteCategory);
 router.get('/', categoryController.getAllCategories);
-router.get('/:id/menuItems', categoryController.getMenuItemsByCategoryId);
+router.get('/:id/menu-items', categoryController.getMenuItemsByCategoryId);
 
 module.exports = router;

@@ -90,7 +90,7 @@ exports.getMenuItems = async (req, res) => {
     const categories = await Category.find({}, 'name').sort('priority');
 
     // Fetch all menu items from the database
-    const menuItems = await MenuItem.find().populate('category');
+    const menuItems = await MenuItem.find().populate('category').sort('priority');
 
     // Group menu items by category
     const menuItemsByCategory = categories.map(category => {

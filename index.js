@@ -34,9 +34,9 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/menuItems", menuItemRoutes);
+app.use("/api/menu-items", menuItemRoutes);
 app.use("/api/categories", categoryRoutes);
-app.use('/api/generalInfo', generalInfoRoutes);
+app.use('/api/genera-info', generalInfoRoutes);
 app.use('/api/upload-image', uploadImageRoutes);
 
 const PORT = process.env.PORT || 5000;

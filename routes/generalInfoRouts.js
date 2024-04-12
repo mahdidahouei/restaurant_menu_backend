@@ -65,7 +65,7 @@ const authMiddleware = require("../middleware/authMiddleware");
  *       '500':
  *         description: Internal server error
  */
-router.post("/api/general-info", authMiddleware, createGeneralInfo);
+router.post("/", authMiddleware, createGeneralInfo);
 
 /**
  * @swagger
@@ -81,7 +81,7 @@ router.post("/api/general-info", authMiddleware, createGeneralInfo);
  *       '500':
  *         description: Internal server error
  */
-router.get("/api/general-info", getGeneralInfo);
+router.get("/", getGeneralInfo);
 
 /**
  * @swagger
@@ -130,6 +130,6 @@ router.get("/api/general-info", getGeneralInfo);
  *       '500':
  *         description: Internal server error
  */
-router.put("/api/general-info", authMiddleware, updateGeneralInfo);
+router.put("/", authMiddleware, updateGeneralInfo);
 
 module.exports = router;

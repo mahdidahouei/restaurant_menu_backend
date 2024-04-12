@@ -48,3 +48,5 @@ router.post(
   upload.single("image"),
   uploadImageController.uploadImage
 );
+
+module.exports = router;

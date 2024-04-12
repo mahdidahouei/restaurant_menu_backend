@@ -31,7 +31,7 @@
 
 /**
  * @swagger
- * /api/menuItems:
+ * /api/menu-items:
  *   get:
  *     summary: Get all menu items
  *     tags: [Menu Items]
@@ -51,7 +51,7 @@
  */
 /**
  * @swagger
- * /api/menuItems:
+ * /api/menu-items:
  *   post:
  *     summary: Create a new menu item
  *     tags: [Menu Items]
@@ -80,7 +80,7 @@
 
 /**
  * @swagger
- * /api/menuItems/{id}:
+ * /api/menu-items/{id}:
  *   put:
  *     summary: Update a menu item
  *     tags: [Menu Items]
@@ -139,7 +139,7 @@
 /**
  * @swagger
  * paths:
- *   /api/menuItems:
+ *   /api/menu-items:
  *     put:
  *       summary: Update multiple menu items
  *       description: Update multiple menu items in the database.

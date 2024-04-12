@@ -1,3 +1,4 @@
+// controllers/uploadImageController.js
 const axios = require("axios");
 
 exports.uploadImage = async (req, res) => {
