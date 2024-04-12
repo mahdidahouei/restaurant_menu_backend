@@ -5,6 +5,15 @@ const axios = require("axios");
 exports.getGeneralInfo = async (req, res) => {
   try {
     const generalInfo = await GeneralInfo.findOne();
+
+    // If the generalInfo object exists
+    if (generalInfo) {
+      const { backgroundImage } = generalInfo;
+      if (backgroundImage) {
+        generalInfo.backgroundImage = `https://${req.get("host")}/api/general-info/background-image`;
+      }
+    }
+
     res.json(generalInfo);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -96,20 +105,22 @@ exports.getBackgroundImage = async (req, res) => {
     const { backgroundImage } = generalInfo;
 
     if (!backgroundImage) {
-      return res.status(404).json({ message: 'Image not found' });
+      return res.status(404).json({ message: "Image not found" });
     }
 
     // Fetch the image binary data from the backgroundImage
-    const imageResponse = await axios.get(backgroundImage, { responseType: 'arraybuffer' });
+    const imageResponse = await axios.get(backgroundImage, {
+      responseType: "arraybuffer",
+    });
 
     // Set the appropriate Content-Type header based on the image format
-    const contentType = imageResponse.headers['content-type'];
-    res.setHeader('Content-Type', contentType);
+    const contentType = imageResponse.headers["content-type"];
+    res.setHeader("Content-Type", contentType);
 
     // Return the binary image data as the response
     res.send(imageResponse.data);
   } catch (error) {
-    console.error('Error fetching menu item image:', error.message);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error("Error fetching menu item image:", error.message);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
