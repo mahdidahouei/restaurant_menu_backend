@@ -29,7 +29,7 @@ exports.getMenuItemsByCategoryId = async (req, res) => {
       const { id } = req.params;
   
       // Query the database for menu items with the specified category Id
-      const menuItems = await MenuItem.find({ category: id });
+      const menuItems = await MenuItem.find({ category: id }).sort('priority');
   
       res.json(menuItems);
     } catch (error) {
