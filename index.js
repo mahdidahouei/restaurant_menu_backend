@@ -32,6 +32,12 @@ app.use('/api/general-info/background-image', (req, res, next) => {
   next();
 });
 
+// Middleware to set CORS headers for images
+app.use('/images', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 // Serve static files from the uploads directory
 app.use('/images', express.static(path.join(__dirname, 'uploads')));
 
