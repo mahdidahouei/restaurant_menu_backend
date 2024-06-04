@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const authenticationRoutes = require("./routes/user");
 const menuItemRoutes = require("./routes/menuItemRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const generalInfoRoutes = require("./routes/generalInfoRouts");
@@ -50,6 +51,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/authentication", authenticationRoutes);
 app.use("/api/menu-items", menuItemRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use('/api/general-info', generalInfoRoutes);
