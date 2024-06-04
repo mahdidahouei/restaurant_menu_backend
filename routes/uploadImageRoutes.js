@@ -43,7 +43,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 const upload = require("../middleware/multerMiddleware");
 
 // Upload endpoint
-app.post('/', authMiddleware, (req, res) => {
+router.post('/', authMiddleware, (req, res) => {
   upload(req, res, (err) => {
     if (err) {
       return res.status(400).json({ message: err.message });
