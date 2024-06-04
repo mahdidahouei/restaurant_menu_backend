@@ -6,6 +6,7 @@ const menuItemRoutes = require("./routes/menuItemRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const generalInfoRoutes = require("./routes/generalInfoRouts");
 const uploadImageRoutes = require("./routes/uploadImageRoutes");
+const path = require('path');
 
 const { specs, swaggerUi } = require("./swagger");
 const cors = require('cors');
@@ -30,6 +31,9 @@ app.use('/api/general-info/background-image', (req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   next();
 });
+
+// Serve static files from the uploads directory
+app.use('/images', express.static(path.join(__dirname, 'uploads')));
 
 // Swagger setup
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
