@@ -40,12 +40,10 @@ const express = require("express");
 const router = express.Router();
 const uploadImageController = require("../controllers/uploadImageController");
 const authMiddleware = require("../middleware/authMiddleware");
-const upload = require("../middleware/multerMiddleware");
 
 router.post(
   "/",
   authMiddleware,
-  upload.single("image"),
   uploadImageController.uploadImage
 );
 
