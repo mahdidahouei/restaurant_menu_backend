@@ -7,12 +7,12 @@ exports.getGeneralInfo = async (req, res) => {
     const generalInfo = await GeneralInfo.findOne();
 
     // If the generalInfo object exists
-    if (generalInfo) {
-      const { backgroundImage } = generalInfo;
-      if (backgroundImage) {
-        generalInfo.backgroundImage = `https://${req.get("host")}/api/general-info/background-image`;
-      }
-    }
+    // if (generalInfo) {
+    //   const { backgroundImage } = generalInfo;
+    //   if (backgroundImage) {
+    //     generalInfo.backgroundImage = `https://${req.get("host")}/api/general-info/background-image`;
+    //   }
+    // }
 
     res.json(generalInfo);
   } catch (error) {
