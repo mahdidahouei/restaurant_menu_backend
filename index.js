@@ -34,7 +34,7 @@ app.use('/api/general-info/background-image', (req, res, next) => {
 });
 
 // Middleware to set CORS headers for images
-app.use('/images', (req, res, next) => {
+app.use('/images/:fileName', (req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   next();
 });
